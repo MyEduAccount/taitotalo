@@ -1,5 +1,5 @@
 # TAITOTALO Python programmer course
-#
+# Under work
 import builtins
 import sys
 def substring(a:int,b:int,str_in:str)->str:
