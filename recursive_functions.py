@@ -1,7 +1,8 @@
 # TAITOTALO Python programmer course
-# Under work
+# UNDER WORK
+# NO WARRANTY OR GUARANTEE OF ANY KIND
+# USE WITH OWN RISK
 import builtins
-import sys
 def substring(a:int,b:int,str_in:str)->str:
     """Get substring with slice exercise
 
@@ -28,7 +29,7 @@ def get_typename(typein:object())->str:
         str: object type as shorten string
     """
     tmp_str=type(typein)
-    print(tmp_str)
+    #print(tmp_str)
     tmp_str=substring(8,-2,str(tmp_str))
     # Check if manipulated type matches types list 
     if type(tmp_str) in [getattr(builtins, d) for d in dir(builtins) if isinstance(getattr(builtins, d), type)]:
@@ -64,26 +65,34 @@ def handleItemsRecursively(inObj:object())->str: # :object() is just a hint what
     Returns:
         str: ...
     """
+    
+    # String is iterable but not wanted to be under iteration
+    excluded_iterable_types=["str"]
     iObj=object()
     iObj=inObj
     i=0
     if (iObj.__sizeof__() > 0):
-            
         #    
         for item in iObj:
-            if is_levels(item) == True:
-                #print("")    
-                print(item)
-                handleItemsRecursively(item)
+            item_type=get_typename(item)
+            if is_levels(item) == True and item_type not in excluded_iterable_types:
+                    print(item)
+                    # Recursion starts here
+                    handleItemsRecursively(item)
             else:
                 print(item)
                 #print("Object is not iterable - one level")
                 continue
-                # End this thread
+                # End this recursive thread
         #
     #                    
     else:
-        print(get_typename(iObj),"Input object is empty.")
+        print(type(iObj),"Input object is empty.")
     
-#    
+#
+# Testing    
 handleItemsRecursively([1,2,3,[4,5,[6,7,8]],9,10,11])
+handleItemsRecursively((1,2,3,(4,5,(6,7,8)),9,10,11))
+sset={"Set","is","not","nested","iterable","structure"} # Set does not guarantee order of items
+ssetX = sset.union({1,2,3,4,5})
+handleItemsRecursively(ssetX)
