@@ -1,6 +1,6 @@
 #Step 1 − Import the unittest module in your program.
 import unittest
-from serializetopicle import serialize_to_pickle as ser #uses adding.py code from module you're testing
+from serializetopickle import serialize_to_pickle as ser #uses adding.py code from module you're testing
 from K9 import __Dog # Dog class from K9.py
 #Step 2 − Define a function to be tested. 
 # In the following example, add() function is to be subjected to test.
